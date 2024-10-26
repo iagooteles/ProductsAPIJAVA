@@ -1,13 +1,13 @@
 package tech.ada.products_api.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+@Data
 @ToString
 public class ProductDTO {
 

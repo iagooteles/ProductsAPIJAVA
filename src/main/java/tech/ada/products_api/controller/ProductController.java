@@ -1,10 +1,12 @@
 package tech.ada.products_api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.ada.products_api.dto.ProductDTO;
+import tech.ada.products_api.service.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +15,19 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+    @Autowired
+    private ProductService productService;
+
     static List<ProductDTO> products = new ArrayList<>();
 
     @PostMapping
     public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) {
-        products.add(productDTO);
+        productService.criar(productDTO);
 
-        return ResponseEntity.ok(productDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(productDTO);
     }
+
+
 
     @GetMapping(value = "/listAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDTO> listAll() {
