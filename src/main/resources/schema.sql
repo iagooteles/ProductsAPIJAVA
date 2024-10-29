@@ -1,4 +1,5 @@
 CREATE TABLE teste (
-    id INT NOT NULL,
-    nome VARCHAR(255)
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(255),
+    PRIMARY KEY (id)
 );

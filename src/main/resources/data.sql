@@ -1,1 +1,13 @@
-INSERT INTO teste (ID, NOME) VALUES (1, 'testando 1');
+INSERT INTO product (SKU, NAME, DESCRIPTION, PRICE, WEIGHT)
+VALUES ('ps0001', 'Ps5 PRO', 'Playtation 5 pro max turbo super dupper', 10000.0, 25.5),
+('ip0001', 'Iphone 16', 'iphone mt bom', 5000.0, 15.5),
+('ip0002', 'Iphone 13', 'iphone ', 5000.0, 15.5),
+('ip0003', 'Iphone 11', 'iphone ', 5000.0, 15.5),
+('ip0004', 'Iphone 12', 'iphone ', 5000.0, 15.5);
+
+INSERT INTO reservation (customer_name, date, time, table_number) VALUES
+('Alice Johnson', '2024-11-01', '12:00:00', 1),
+('Bob Smith', '2024-11-02', '13:30:00', 2),
+('Charlie Brown', '2024-11-03', '18:00:00', 3),
+('Diana Prince', '2024-11-04', '19:30:00', 4),
+('Ethan Hunt', '2024-11-05', '20:00:00', 5);
