@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import tech.ada.products_api.model.Product;
 import tech.ada.products_api.model.Reservation;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 

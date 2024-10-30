@@ -28,3 +28,7 @@ O projeto utiliza um `ProductDTO` com os seguintes atributos:
 - Java
 - Spring Boot
 - DTO (Data Transfer Object)
+
+### Atualizações
+
+Adicionado também rotas para reservation, simulando reservas de um restaurante.

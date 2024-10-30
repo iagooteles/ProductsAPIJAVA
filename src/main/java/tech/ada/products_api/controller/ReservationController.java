@@ -17,11 +17,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservations")
 public class ReservationController {
-
 
     @Autowired
     private ReservationService reservationService;
@@ -55,9 +55,9 @@ public class ReservationController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.reservationService.update(reservationDTO));
     }
 
-    @DeleteMapping("/{table-number}/")
-    public ResponseEntity<Void> delete(@PathVariable("table-number") Integer tableNumber,
-                                       @RequestHeader("date-time") LocalDateTime dateTime) {
+    @DeleteMapping("/{id}/")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        reservationService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
