@@ -36,9 +36,10 @@ public class ProductService {
     public void criar(ProductDTO productDTO) {
         Product product = new Product();
         product.setSku(productDTO.getSku());
-        product.setName(product.getName());
+        product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());
+        product.setRegister(productDTO.getRegister());
         product.setWeight(productDTO.getWeight());
 
         productRepository.save(product);
@@ -53,7 +54,9 @@ public class ProductService {
             product.setName(productDTO.getName());
             product.setDescription(productDTO.getDescription());
             product.setPrice(productDTO.getPrice());
+            product.setRegister(productDTO.getRegister());
             product.setWeight(productDTO.getWeight());
+
             this.productRepository.save(product);
             return productDTO;
         }
@@ -90,6 +93,7 @@ public class ProductService {
         productDTO.setName(product.getName());
         productDTO.setDescription(product.getDescription());
         productDTO.setPrice(product.getPrice());
+        productDTO.setRegister(product.getRegister());
         productDTO.setWeight(product.getWeight());
 
         return productDTO;

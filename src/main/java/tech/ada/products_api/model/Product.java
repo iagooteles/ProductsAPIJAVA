@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,8 +20,11 @@ public class Product {
     private String sku;
     private String name;
     private String description;
+
     @Column(precision = 16, scale = 2, nullable = false)
     private BigDecimal price;
+
+    private LocalDateTime register;
     private Double weight;
 
 }
