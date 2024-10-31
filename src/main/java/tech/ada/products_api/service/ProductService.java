@@ -1,5 +1,6 @@
 package tech.ada.products_api.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.ada.products_api.dto.ProductDTO;
@@ -21,6 +22,23 @@ public class ProductService {
     public List<ProductDTO> listarTodos() {
         return this.productRepository
                 .findAll()
+                .stream()
+                .map(this::convert)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<ProductDTO> listAll(LocalDateTime from, LocalDateTime to) {
+        return this.productRepository
+                .findByRegisterDate(from, to)
+                .stream()
+                .map(this::convert)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProductDTO> listAll(String name, LocalDateTime from, LocalDateTime to) {
+        return this.productRepository
+                .listAll(name, from, to)
                 .stream()
                 .map(this::convert)
                 .collect(Collectors.toList());
@@ -63,9 +81,9 @@ public class ProductService {
         return null;
     }
 
+    @Transactional
     public void delete(String sku) {
-        Optional<Product> productToBeDeleted = this.productRepository.findBySku(sku);
-        productToBeDeleted.ifPresent(product -> this.productRepository.delete(product));
+        this.productRepository.deleteBySku(sku);
     }
 
     public ResponseDTO<?> buscarPorSKU(String sku) {

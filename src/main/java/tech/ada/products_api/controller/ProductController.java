@@ -9,6 +9,7 @@ import tech.ada.products_api.dto.ProductDTO;
 import tech.ada.products_api.dto.ResponseDTO;
 import tech.ada.products_api.service.ProductService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,18 @@ public class ProductController {
     @GetMapping(value = "/by/{sku}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseDTO<?>> bySKU(@PathVariable("sku") String sku) {
         return ResponseEntity.ok(this.productService.buscarPorSKU(sku));
+    }
+
+    @GetMapping(value = "/all-from/{from}/to/{to}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductDTO> listAll(LocalDateTime from, LocalDateTime to) {
+        return this.productService.listAll(from, to);
+    }
+
+    @GetMapping(value = "/listAllByParams", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductDTO> listAll(@RequestParam(required = false) String name,
+                                    @RequestParam LocalDateTime from,
+                                    @RequestParam LocalDateTime to) {
+        return this.productService.listAll(name, from, to);
     }
 
     @GetMapping(value = "/all-with-name-equalTo", produces = MediaType.APPLICATION_JSON_VALUE)
