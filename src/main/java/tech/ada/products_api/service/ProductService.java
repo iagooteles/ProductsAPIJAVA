@@ -8,6 +8,7 @@ import tech.ada.products_api.dto.ResponseDTO;
 import tech.ada.products_api.model.Product;
 import tech.ada.products_api.repository.ProductRepository;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,8 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ExchangeService exchangeService;
 
     public List<ProductDTO> listarTodos() {
         return this.productRepository
@@ -51,7 +54,7 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public void criar(ProductDTO productDTO) {
+    public ProductDTO criar(ProductDTO productDTO) {
         Product product = new Product();
         product.setSku(productDTO.getSku());
         product.setName(productDTO.getName());
@@ -60,7 +63,12 @@ public class ProductService {
         product.setRegister(productDTO.getRegister());
         product.setWeight(productDTO.getWeight());
 
+        product.setExchange(exchangeService.getConvertedPrice(productDTO.getPrice()));
+        productDTO.setExchange(product.getExchange());
+
         productRepository.save(product);
+
+        return productDTO;
     }
 
     public ProductDTO update(ProductDTO productDTO) {
@@ -113,6 +121,8 @@ public class ProductService {
         productDTO.setPrice(product.getPrice());
         productDTO.setRegister(product.getRegister());
         productDTO.setWeight(product.getWeight());
+
+        productDTO.setExchange(product.getExchange());
 
         return productDTO;
     }

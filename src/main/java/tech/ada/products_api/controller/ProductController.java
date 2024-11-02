@@ -1,5 +1,6 @@
 package tech.ada.products_api.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -48,9 +49,8 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> create(@RequestBody ProductDTO productDTO) {
-        productService.criar(productDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(productDTO);
+    public ResponseEntity<ProductDTO> create(@Valid @RequestBody ProductDTO productDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.criar(productDTO));
     }
 
     @PutMapping
