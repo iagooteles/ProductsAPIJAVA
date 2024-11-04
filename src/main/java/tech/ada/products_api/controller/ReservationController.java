@@ -10,6 +10,7 @@ import tech.ada.products_api.dto.ProductDTO;
 import tech.ada.products_api.dto.ReservationDTO;
 import tech.ada.products_api.dto.ResponseDTO;
 import tech.ada.products_api.model.Reservation;
+import tech.ada.products_api.service.NameService;
 import tech.ada.products_api.service.ProductService;
 import tech.ada.products_api.service.ReservationService;
 

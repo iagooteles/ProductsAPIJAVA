@@ -1,3 +1,6 @@
+## Todo 
+Fazer o cliente com openfeing para o reservation ,consumir qlqr api para montar uma nova propriedade lá
+
 # Products API
 
 Este repositório é um projeto pessoal para estudos em Java, focado em chamadas HTTP utilizando um **DTO** para produtos.

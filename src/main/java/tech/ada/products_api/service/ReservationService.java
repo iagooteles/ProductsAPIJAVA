@@ -19,6 +19,8 @@ public class ReservationService {
 
     @Autowired
     private ReservationsRepository reservationsRepository;
+    @Autowired
+    private NameService nameService;
 
     public List<ReservationDTO> listAllReservations() {
         return this.reservationsRepository
@@ -38,7 +40,12 @@ public class ReservationService {
     public Reservation criar(ReservationDTO reservationDTO) {
         Reservation reservation = new Reservation();
 
-        reservation.setCustomerName(reservationDTO.getCustomerName());
+        if (reservationDTO.getCustomerName().equalsIgnoreCase("")) {
+            reservation.setCustomerName(nameService.getRandomName());
+        } else {
+            reservation.setCustomerName(reservationDTO.getCustomerName());
+        }
+
         reservation.setDate(reservationDTO.getDate());
         reservation.setTime(reservationDTO.getTime());
         reservation.setTableNumber(reservationDTO.getTableNumber());

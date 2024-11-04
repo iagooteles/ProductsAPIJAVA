@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table(name = "tb_product")
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -26,7 +26,7 @@ public class Product {
     private LocalDateTime register;
     @Column(precision = 16, scale = 2, nullable = false)
     private BigDecimal price;
-    @Column(precision = 16, scale = 2, nullable = false)
+    @Column(precision = 16, scale = 2)
     private BigDecimal exchange;
     private Double weight;
 

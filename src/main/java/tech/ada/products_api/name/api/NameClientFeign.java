@@ -1,0 +1,12 @@
+package tech.ada.products_api.name.api;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+
+@FeignClient(name = "nameGeneratorClient", url = "https://gerador-nomes.wolan.net")
+public interface NameClientFeign {
+    @GetMapping("/nome/aleatorio")
+    List<String> getRandomName();
+}
